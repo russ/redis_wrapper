@@ -17,5 +17,33 @@ defmodule RedisWrapper.Server do
   def handle_call({:ping}, _from, client) do
     {:reply, client |> R.ping, client}
   end
+
+  def handle_call({:get, key}, _from, client) do
+    {:reply, client |> R.get(key), client}
+  end
+
+  def handle_call({:hgetall, key}, _from, client) do
+    {:reply, client |> R.hgetall(key), client}
+  end
+
+  def handle_cast({:set, key, value}, _from, client) do
+    {:noreply, client |> R.set(key, value), client}
+  end
+
+  def handle_cast({:sadd, key, value}, _from, client) do
+    {:noreply, client |> R.sadd(key, value), client}
+  end
+
+  def handle_cast({:incr, key}, _from, client) do
+    {:noreply, client |> R.incr(key), client}
+  end
+
+  def handle_cast({:hincrby, key, k, v}, _from, client) do
+    {:noreply, client |> R.hincrby(key, k, v), client}
+  end
+
+  def handle_cast({:hmset, key, values}, _from, client) do
+    {:noreply, client |> R.hmset(key, values), client}
+  end
 end
 

@@ -12,7 +12,8 @@ defmodule RedisWrapper.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    [mod: { RedisWrapper, [System.get_env("REDIS_URL") || "redis://127.0.0.1:6379"] }]
+    {_, connection_string} = :application.get_env(:redis_wrapper, :connection_string)
+    [mod: { RedisWrapper, [connection_string] }]
   end
 
   # Dependencies can be Hex packages:

@@ -9,7 +9,8 @@ defmodule RedisWrapper.Server do
   end
 
   def init(connection_string) do
-    client = E.start_using_connection_string(connection_string)
+    {_, env_connection_string } = :application.get_env(:redis_wrapper, :connection_string)
+    client = E.start_using_connection_string(connection_string || env_connection_string)
     {:ok, client}
   end
 

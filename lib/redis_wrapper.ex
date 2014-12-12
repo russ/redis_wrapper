@@ -1,7 +1,7 @@
 defmodule RedisWrapper do
   use Application
 
-  def start(_type, connection_string \\ System.get_env("REDIS_URL")) do
+  def start(_type, connection_string) do
     RedisWrapper.Supervisor.start_link(connection_string)
   end
 

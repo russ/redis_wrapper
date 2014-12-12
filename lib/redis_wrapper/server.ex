@@ -26,24 +26,29 @@ defmodule RedisWrapper.Server do
     {:reply, client |> R.hgetall(key), client}
   end
 
-  def handle_cast({:set, key, value}, _from, client) do
-    {:noreply, client |> R.set(key, value), client}
+  def handle_cast({:set, key, value}, client) do
+    client |> R.set(key, value)
+    {:noreply, client}
   end
 
-  def handle_cast({:sadd, key, value}, _from, client) do
-    {:noreply, client |> R.sadd(key, value), client}
+  def handle_cast({:sadd, key, value}, client) do
+    client |> R.sadd(key, value)
+    {:noreply, client}
   end
 
-  def handle_cast({:incr, key}, _from, client) do
-    {:noreply, client |> R.incr(key), client}
+  def handle_cast({:incr, key}, client) do
+    client |> R.incr(key)
+    {:noreply, client}
   end
 
-  def handle_cast({:hincrby, key, k, v}, _from, client) do
-    {:noreply, client |> R.hincrby(key, k, v), client}
+  def handle_cast({:hincrby, key, k, v}, client) do
+    client |> R.hincrby(key, k, v)
+    {:noreply, client}
   end
 
-  def handle_cast({:hmset, key, values}, _from, client) do
-    {:noreply, client |> R.hmset(key, values), client}
+  def handle_cast({:hmset, key, values}, client) do
+    client |> R.hmset(key, values)
+    {:noreply, client}
   end
 end
 

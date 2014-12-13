@@ -21,6 +21,10 @@ defmodule RedisWrapper do
     :gen_server.cast(:redis_wrapper, {:set, key, value})
   end
 
+  def sadd(key, value) do
+    :gen_server.cast(:redis_wrapper, {:sadd, key, value})
+  end
+
   def incr(key) do
     :gen_server.cast(:redis_wrapper, {:incr, key})
   end

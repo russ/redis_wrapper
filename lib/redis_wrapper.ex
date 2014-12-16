@@ -17,6 +17,10 @@ defmodule RedisWrapper do
     :gen_server.call(:redis_wrapper, {:hgetall, key})
   end
 
+  def smembers(key) do
+    :gen_server.call(:redis_wrapper, {:smembers, key})
+  end
+
   def set(key, value) do
     :gen_server.cast(:redis_wrapper, {:set, key, value})
   end

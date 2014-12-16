@@ -26,6 +26,10 @@ defmodule RedisWrapper.Server do
     {:reply, client |> R.hgetall(key), client}
   end
 
+  def handle_call({:smembers, key}, _from, client) do
+    {:reply, client |> R.smembers(key), client}
+  end
+
   def handle_cast({:set, key, value}, client) do
     client |> R.set(key, value)
     {:noreply, client}

@@ -3,7 +3,7 @@ defmodule RedisWrapper.Mixfile do
 
   def project do
     [app: :redis_wrapper,
-     version: "0.0.1",
+     version: "0.0.2",
      elixir: "~> 1.0",
      deps: deps]
   end
@@ -12,8 +12,7 @@ defmodule RedisWrapper.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    {_, connection_string} = :application.get_env(:redis_wrapper, :connection_string)
-    [mod: { RedisWrapper, [connection_string] }]
+    [mod: { RedisWrapper, [] }]
   end
 
   # Dependencies can be Hex packages:
